@@ -1,24 +1,39 @@
 # README
+##usersテーブル
+| Column             | Type   | Options                       |
+| ------------------ | ------ | ------------------------------|
+| email              | string | null: false ,unique: true     |
+| encrypted_password | string | null: false                   |  
+| name               | string | null: false                   |
+| nickname           | string | null: false                   |
+| date_of_birth      | integer| null: false                   |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##itemsテーブル
+| Column             | Type         | Options                       |
+| ------------------ | -------------| ------------------------------|
+| title              | string       | null: false                   |
+| category           | string       | null: false                   |  
+| commodity_condition| text         | null: false                   |
+| user               | references   | null: false ,foreign_key:true |
+| order              | references   | null: false ,foreign_key:true |
 
-Things you may want to cover:
+##ordersテーブル
+ Column              | Type         | Options                       |
+| ------------------ | ------------ | ------------------------------|
+| amount_of_money    | integer      | null: false                   |
+| delivery_charge    | integer      | null: false                   |  
+| sender             | string       | null: false                   |
+| rough_indication   | text         | null: false                   |
+| user               | references   | null: false ,foreign_key:true |
+| order              | references   | null: false ,foreign_key:true |
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##addresssテーブル
+| Column             | Type         | Options                       |
+| ------------------ | -------------| ------------------------------|
+| post_code          | integer      | null: false                   |
+| prefectures        | text         | null: false                   | 
+| municipality       | text         | null: false                   |
+| address            | text         | null: false                   |
+| apartment          | text         | null: false                   |
+| order              | references   | null: false ,foreign_key:true |
