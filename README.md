@@ -2,38 +2,55 @@
 ##usersテーブル
 | Column             | Type   | Options                       |
 | ------------------ | ------ | ------------------------------|
-| email              | string | null: false ,unique: true     |
-| encrypted_password | string | null: false                   |  
-| name               | string | null: false                   |
 | nickname           | string | null: false                   |
-| date_of_birth      | integer| null: false                   |
+| email              | string | null: false                   |
+| encrypted_password | string | null: false                   |  
+| last_name          | string | null: false                   |
+| first_name         | string | null: false                   |
+| last_name_kana     | string | null: false                   |
+| first_name_kana    | string | null: false                   |
+| date_of_birth      | date_today| null: false                |
+
+- has_many :items
+- has_many :orders
+
 
 ##itemsテーブル
 | Column             | Type         | Options                       |
 | ------------------ | -------------| ------------------------------|
-| title              | string       | null: false                   |
-| category           | string       | null: false                   |  
-| commodity_condition| text         | null: false                   |
+| item_name          | string       | null: false                   |
+| item_price         | integer      | null: false                   |
+| item_info          | text         | null: false                   |
+| item_category      | integer      | null: false                   |
+| item_sales_status  | integer      | null: false                   |
+| item_shipping_fee_status| integer | null: false                   |
+| item_prefecture    | integer      | null: false                   |
+| item_scheduled_delivery integer   | null: false                   |
 | user               | references   | null: false ,foreign_key:true |
-| order              | references   | null: false ,foreign_key:true |
+
+- belongs_to :users
+- has_one :orders
 
 ##ordersテーブル
  Column              | Type         | Options                       |
 | ------------------ | ------------ | ------------------------------|
-| amount_of_money    | integer      | null: false                   |
-| delivery_charge    | integer      | null: false                   |  
-| sender             | string       | null: false                   |
-| rough_indication   | text         | null: false                   |
 | user               | references   | null: false ,foreign_key:true |
-| order              | references   | null: false ,foreign_key:true |
+| item               | references   | null: false ,foreign_key:true |
+
+- belongs_to :items
+- belongs_to :users
+- has_one :addreses
 
 
-##addresssテーブル
+##addresesテーブル
 | Column             | Type         | Options                       |
 | ------------------ | -------------| ------------------------------|
-| post_code          | integer      | null: false                   |
-| prefectures        | text         | null: false                   | 
-| municipality       | text         | null: false                   |
-| address            | text         | null: false                   |
-| apartment          | text         | null: false                   |
-| order              | references   | null: false ,foreign_key:true |
+| postal_code        | string       | null: false                   |
+| prefecture         | integer      | null: false                   |
+| city               | string       | null: false                   |
+| addresses          | string       | null: false                   |
+| building           | string       | null: false                   |
+| phone_number       | string       | null: false                   |
+| button             | references   | null: false ,foreign_key:true |
+
+- belongs_to :orders
