@@ -1,24 +1,56 @@
 # README
+##usersテーブル
+| Column             | Type   | Options                       |
+| ------------------ | ------ | ------------------------------|
+| nickname           | string | null: false                   |
+| email              | string | null: false ,unique: true     |
+| encrypted_password | string | null: false                   |  
+| last_name          | string | null: false                   |
+| first_name         | string | null: false                   |
+| last_name_kana     | string | null: false                   |
+| first_name_kana    | string | null: false                   |
+| date_of_birth      | date　　| null: false                |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- has_many :items
+- has_many :orders
 
-Things you may want to cover:
 
-* Ruby version
+##itemsテーブル
+| Column             | Type         | Options                       |
+| ------------------ | -------------| ------------------------------|
+| item_name          | string       | null: false                   |
+| item_price         | integer      | null: false                   |
+| item_info          | text         | null: false                   |
+| item_category_id   | integer      | null: false                   |
+| item_sales_status_id | integer    | null: false                   |
+| item_shipping_fee_status_id | integer| null: false                |
+| item_prefecture_id | integer      | null: false                   |
+| item_scheduled_delivery_id |integer | null: false                 |
+| user               | references   | null: false ,foreign_key:true |
 
-* System dependencies
+- belongs_to :user
+- has_one :order
 
-* Configuration
+##ordersテーブル
+ Column              | Type         | Options                       |
+| ------------------ | ------------ | ------------------------------|
+| user               | references   | null: false ,foreign_key:true |
+| item               | references   | null: false ,foreign_key:true |
 
-* Database creation
+- belongs_to :item
+- belongs_to :user
+- has_one :address
 
-* Database initialization
 
-* How to run the test suite
+##addresesテーブル
+| Column             | Type         | Options                       |
+| ------------------ | -------------| ------------------------------|
+| postal_code        | string       | null: false                   |
+| item_prefecture_id | integer      | null: false                   |
+| city               | string       | null: false                   |
+| addresses          | string       | null: false                   |
+| building           | string       |                               |
+| phone_number       | string       | null: false                   |
+| order              | references   | null: false ,foreign_key:true |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- belongs_to :order
