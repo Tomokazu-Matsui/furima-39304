@@ -65,6 +65,11 @@ RSpec.describe OrderForm, type: :model do
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Phone number Please enter a half-width numerical value of 10 to 11 digits")
     end
+    it 'tokenが空では購入できない' do
+      @order_form.token = nil
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include("Token can't be blank")
+    end
     it 'ユーザーが紐付いていなければ購入できない' do
       @order_form.user_id = nil
       @order_form.valid?
