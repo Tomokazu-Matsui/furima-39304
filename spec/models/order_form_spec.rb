@@ -4,7 +4,7 @@ RSpec.describe OrderForm, type: :model do
   before do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
-    @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id )
+    @order_form = FactoryBot.build(:order_form,user_id: user.id,item_id: item.id)
   end
 
   describe '購入情報の保存' do
@@ -28,7 +28,7 @@ RSpec.describe OrderForm, type: :model do
     it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみでなければ無ければ購入できない' do
       @order_form.postal_code = '1111111'
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@order_form.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
     end
     it '都道府県に『---』が選択されている場合には購入できない' do
       @order_form.item_prefecture_id = 1
@@ -53,17 +53,17 @@ RSpec.describe OrderForm, type: :model do
     it '電話番号は、10桁以上11桁以内の半角数値のみでなければ購入できない' do
       @order_form.phone_number = '０9000000000'
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number Please enter a half-width numerical value of 10 to 11 digits")
+      expect(@order_form.errors.full_messages).to include("Phone number Phone number Input only number")
     end
     it '電話番号は、9桁以下では購入できない' do
       @order_form.phone_number = '090456789'
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number Please enter a half-width numerical value of 10 to 11 digits")
+      expect(@order_form.errors.full_messages).to include("Phone number Phone number Input only number")
     end
     it '電話番号は、12桁以上では購入できない' do
       @order_form.phone_number = '090456789012'
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number Please enter a half-width numerical value of 10 to 11 digits")
+      expect(@order_form.errors.full_messages).to include("Phone number Phone number Input only number")
     end
     it 'tokenが空では購入できない' do
       @order_form.token = nil

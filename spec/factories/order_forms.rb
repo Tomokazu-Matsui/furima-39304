@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :order_form do
-    
     postal_code { '590-0000' }
     item_prefecture_id { 5 }
     city { '千早青坂村' }
@@ -8,5 +7,7 @@ FactoryBot.define do
     building { 'クラブハウス101' }
     phone_number { '07077777777' }
     token { 'tok_abcdefghijk00000000000000000' }
+    association :user
+    association :item
   end
 end
