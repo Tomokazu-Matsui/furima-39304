@@ -11,6 +11,7 @@ class OrderForm
     validates :addresses
     validates :phone_number, format: { with: /\A[0-9]{11}\z/,message: 'Please enter a half-width numerical value of 10 to 11 digits'}
   end
+  
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
     Order.create
