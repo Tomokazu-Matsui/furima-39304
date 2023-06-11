@@ -42,7 +42,7 @@
 - has_one :address
 
 
-##addresesテーブル
+##addressesテーブル
 | Column             | Type         | Options                       |
 | ------------------ | -------------| ------------------------------|
 | postal_code        | string       | null: false                   |
