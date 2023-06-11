@@ -2,11 +2,11 @@ FactoryBot.define do
   factory :item do
     item_name { Faker::Name.initials }
     item_info { Faker::Lorem.sentence }
-    item_category_id { '2' }
-    item_sales_status_id { '3' }
-    item_shipping_fee_status_id { '2' }
-    item_prefecture_id { '3' }
-    item_scheduled_delivery_id { '2' }
+    category_id { '2' }
+    sales_status_id { '3' }
+    shipping_fee_status_id { '2' }
+    prefecture_id { '3' }
+    scheduled_delivery_id { '2' }
     item_price { '1000' }
     association :user
 

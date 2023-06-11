@@ -28,29 +28,29 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Item name can't be blank")
       end
       it 'カテゴリーの情報が「---」だと出品できない' do
-        @item.item_category_id = 0
+        @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item category must be other than 0')
+        expect(@item.errors.full_messages).to include("Category must be other than 0")
       end
       it '商品の状態の情報が「---」だと出品できない' do
-        @item.item_sales_status_id = 0
+        @item.sales_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item sales status must be other than 0')
+        expect(@item.errors.full_messages).to include("Sales status must be other than 0")
       end
       it '配送料の負担の情報が「---」だと出品できない' do
-        @item.item_shipping_fee_status_id = 0
+        @item.shipping_fee_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item shipping fee status must be other than 0')
+        expect(@item.errors.full_messages).to include("Shipping fee status must be other than 0")
       end
       it '発送元の地域の情報が「---」だと出品できない' do
-        @item.item_prefecture_id = 0
+        @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item prefecture must be other than 0')
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
       end
       it '発送までの日数の情報が「---」だと出品できない' do
-        @item.item_scheduled_delivery_id = 0
+        @item.scheduled_delivery_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item scheduled delivery must be other than 0')
+        expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 0")
       end
 
       it '価格が空欄だと出品できない' do
